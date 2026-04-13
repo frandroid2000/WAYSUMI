@@ -23,6 +23,16 @@
 
     <link rel="canonical" href="https://www.waysumi.com/">
 
+    <!-- Google Analytics (GA4) -->
+    <!-- ⚠️ Reemplaza G-3QW37XY7QD con tu ID de medición real -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3QW37XY7QD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3QW37XY7QD');
+    </script>
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
@@ -1860,12 +1870,12 @@
                 </form>
 
                 <div class="download-success" id="downloadSuccess">
-    <div class="icon">✨</div>
-    <h3>¡Gracias por tu interés!</h3>
-    <p>Tu catálogo se está descargando.</p>
-    <a href="catalogo/WAYSUMI-catalogo.pdf" download id="manualDownloadLink">
-        📄 Descargar de nuevo
-    </a>
+                    <div class="icon">✨</div>
+                    <h3>¡Gracias por tu interés!</h3>
+                    <p>Tu catálogo se está descargando.</p>
+                    <a href="catalogo/WAYSUMI-catalogo.pdf" download id="manualDownloadLink">
+                        📄 Descargar de nuevo
+                    </a>
                 </div>
             </div>
         </div>
@@ -2261,6 +2271,26 @@
             observer.observe(el);
         });
 
+        // 📊 Google Analytics: trackear clics en enlaces de WhatsApp
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_whatsapp', {
+                        'ubicacion': this.textContent.trim().substring(0, 50) || 'boton'
+                    });
+                }
+            });
+        });
+
+        // 📊 Trackear clics en productos (modal abierto)
+        const originalOpenModal = window.openModal;
+        window.openModal = function(productId) {
+            if (typeof gtag === 'function') {
+                gtag('event', 'ver_producto', { 'producto': productId });
+            }
+            originalOpenModal(productId);
+        };
+
         // ============================================
         // EMAIL DINÁMICO (evita ofuscación de Cloudflare)
         // ============================================
@@ -2349,6 +2379,7 @@
             ).map(el => el.value).join(', ');
 
             const data = {
+                token: 'waysumi_2026_xK9mP2nQ',
                 fecha: new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' }),
                 nombre: document.getElementById('nombre').value.trim(),
                 correo: document.getElementById('correo').value.trim(),
@@ -2377,6 +2408,14 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+
+                // 📊 Google Analytics: registrar evento de descarga
+                if (typeof gtag === 'function') {
+                    gtag('event', 'descarga_catalogo', {
+                        'tipo_piel': data.tipoPiel,
+                        'uso': data.uso
+                    });
+                }
 
                 // Mostrar mensaje de éxito
                 form.style.display = 'none';
