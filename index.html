@@ -267,8 +267,8 @@
         }
         .hero-image-wrapper {
             position: relative;
-            width: 450px;
-            height: 450px;
+            width: 500px;
+            height: 500px;
         }
         .hero-circle {
             position: absolute;
@@ -305,7 +305,7 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 380px; height: 380px;
+            width: 480px; height: 480px;
             object-fit: cover;
             border-radius: 50%;
             box-shadow: 0 30px 60px rgba(44, 74, 62, 0.25);
@@ -1428,8 +1428,6 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-image-wrapper">
-                    <div class="hero-circle"></div>
-                    <div class="hero-circle-inner"></div>
                     <img src="images/jabon-hero.png" alt="Jabones artesanales WAYSUMI con ingredientes naturales" class="hero-product-img" onerror="this.outerHTML='<span class=\'hero-product\'>🧼</span>'">
                 </div>
             </div>
@@ -1790,7 +1788,7 @@
 
                     <div class="form-group">
                         <label for="whatsapp">WhatsApp</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej. 931 887 979">
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="999 999 999">
                         <span class="form-hint">Opcional · Para contactarte con recomendaciones</span>
                     </div>
 
@@ -1862,12 +1860,12 @@
                 </form>
 
                 <div class="download-success" id="downloadSuccess">
-                    <div class="icon">✨</div>
-                    <h3>¡Gracias por tu interés!</h3>
-                    <p>Tu catálogo se está descargando. También te contactaremos con recomendaciones personalizadas.</p>
-                    <a href="catalogo/WAYSUMI-catalogo.pdf" download id="manualDownloadLink">
-                        📄 Descargar de nuevo
-                    </a>
+    <div class="icon">✨</div>
+    <h3>¡Gracias por tu interés!</h3>
+    <p>Tu catálogo se está descargando.</p>
+    <a href="catalogo/WAYSUMI-catalogo.pdf" download id="manualDownloadLink">
+        📄 Descargar de nuevo
+    </a>
                 </div>
             </div>
         </div>
@@ -1881,8 +1879,8 @@
             <p>Cuéntanos tu tipo de piel y rutina diaria, te orientamos para elegir el ritual más adecuado para ti 💚</p>
 
             <div class="contact-methods">
-                <a href="/cdn-cgi/l/email-protection#4215233b2e2e2331372f2b02252f232b2e6c212d2f" class="contact-method">
-                    <span>📧</span> <span class="__cf_email__" data-cfemail="702711091c1c1103051d1930171d11191c5e131f1d">[email&#160;protected]</span>
+                <a href="#" class="contact-method" id="emailContact">
+                    <span>📧</span> <span id="emailDisplay"></span>
                 </a>
             </div>
 
@@ -1950,7 +1948,7 @@
                     <h4>Contacto</h4>
                     <ul>
                         <li><a href="https://wa.me/51931887979" target="_blank">WhatsApp: 931 887 979</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#8cdbedf5e0e0edfff9e1e5ccebe1ede5e0a2efe3e1"><span class="__cf_email__" data-cfemail="6c3b0d1500000d1f1901052c0b010d0500420f0301">[email&#160;protected]</span></a></li>
+                        <li><a href="#" id="emailFooter"><span id="emailFooterText"></span></a></li>
                         <li><a href="https://www.instagram.com/waysumi_peru" target="_blank">@waysumi_peru</a></li>
                     </ul>
                 </div>
@@ -1963,7 +1961,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Datos de productos - Catálogo oficial WAYSUMI
         const productsData = {
             'selva-clara': {
@@ -2264,11 +2262,30 @@
         });
 
         // ============================================
+        // EMAIL DINÁMICO (evita ofuscación de Cloudflare)
+        // ============================================
+        (function() {
+            const user = 'Wayllasumi';
+            const domain = 'gmail.com';
+            const email = user + '\u0040' + domain;
+
+            const emailDisplay = document.getElementById('emailDisplay');
+            const emailContact = document.getElementById('emailContact');
+            if (emailDisplay) emailDisplay.textContent = email;
+            if (emailContact) emailContact.href = 'mailto:' + email;
+
+            const emailFooterText = document.getElementById('emailFooterText');
+            const emailFooter = document.getElementById('emailFooter');
+            if (emailFooterText) emailFooterText.textContent = email;
+            if (emailFooter) emailFooter.href = 'mailto:' + email;
+        })();
+
+        // ============================================
         // FORMULARIO DE DESCARGA DE CATÁLOGO
         // ============================================
         // ⚠️ IMPORTANTE: Reemplaza esta URL con la tuya
         // de Google Apps Script (ver instrucciones al final del archivo)
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/uni.pe/s/AKfycbziVkfmaPcmaUh84pmSOvOuEYHLuYMIS3o6d1cPpmwx275gcY5aIwqGF60mGejKSXi9/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec';
 
         // Ruta del PDF del catálogo (súbelo a la carpeta /catalogo/)
         const CATALOGO_PDF_URL = 'catalogo/WAYSUMI-catalogo.pdf';
@@ -2344,11 +2361,12 @@
 
             try {
                 // Envío a Google Sheets vía Apps Script
-                // Se usa modo no-cors porque Apps Script no devuelve headers CORS por defecto
+                // IMPORTANTE: se usa text/plain para evitar preflight CORS.
+                // Apps Script recibe el JSON en e.postData.contents de todos modos.
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(data)
                 });
 
