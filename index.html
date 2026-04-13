@@ -46,7 +46,7 @@
         },
         "sameAs": [
             "https://web.facebook.com/profile.php?id=61582317249778",
-            "https://www.instagram.com/waysumi_amazonica/",
+            "https://www.instagram.com/waysumi_peru",
             "https://www.tiktok.com/@waysumi"
         ]
     }
@@ -305,10 +305,12 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px; height: 280px;
-            object-fit: contain;
-            filter: drop-shadow(0 30px 60px rgba(44, 74, 62, 0.3));
+            width: 380px; height: 380px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 30px 60px rgba(44, 74, 62, 0.25);
             animation: float 3s ease-in-out infinite;
+            z-index: 1;
         }
         @keyframes float {
             0%, 100% { transform: translate(-50%, -50%) translateY(0); }
@@ -1151,13 +1153,234 @@
             .footer-main { grid-template-columns: 1fr; gap: 40px; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
+        /* DESCARGA DE CATÁLOGO */
+        .download-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #e8f4f8 0%, #f5efe6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(14, 165, 233, 0.08);
+        }
+        .download-section::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -80px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(44, 74, 62, 0.05);
+        }
+        .download-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .download-intro { text-align: center; margin-bottom: 40px; }
+        .download-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            color: var(--verde-bosque);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .download-intro p {
+            font-size: 1.05rem;
+            color: var(--texto-suave);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .download-card {
+            background: var(--blanco);
+            padding: 50px 45px;
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, var(--verde-bosque));
+        }
+        .form-group { margin-bottom: 22px; }
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--verde-bosque);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        .form-group label .required { color: #e11d48; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e7eb;
+            background: var(--crema);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            color: var(--texto);
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            background: var(--blanco);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        .form-group.invalid input,
+        .form-group.invalid select {
+            border-color: #e11d48;
+        }
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .checkbox-group, .radio-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .radio-group { grid-template-columns: repeat(3, 1fr); }
+        .check-item, .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: var(--crema);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+        }
+        .check-item:hover, .radio-item:hover {
+            border-color: #0ea5e9;
+            background: rgba(14, 165, 233, 0.05);
+        }
+        .check-item input, .radio-item input {
+            accent-color: #0ea5e9;
+            cursor: pointer;
+            width: 18px; height: 18px;
+        }
+        .check-item span, .radio-item span {
+            font-size: 0.88rem;
+            color: var(--texto);
+        }
+        .check-item.checked, .radio-item.checked {
+            border-color: #0ea5e9;
+            background: rgba(14, 165, 233, 0.08);
+        }
+        .download-btn {
+            width: 100%;
+            padding: 20px;
+            background: #a8d8e8;
+            color: #ffffff;
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            cursor: not-allowed;
+            transition: all 0.4s ease;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0.75;
+        }
+        .download-btn.active {
+            background: #0ea5e9;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.35);
+        }
+        .download-btn.active:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.45);
+        }
+        .download-btn.sending {
+            background: #64748b;
+            cursor: wait;
+            opacity: 0.8;
+        }
+        .download-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+        .download-success.active { display: block; }
+        .download-success .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .download-success h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--verde-bosque);
+            margin-bottom: 12px;
+        }
+        .download-success p {
+            color: var(--texto-suave);
+            margin-bottom: 25px;
+        }
+        .download-success a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0ea5e9;
+            color: var(--blanco);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .download-success a:hover { background: #0284c7; transform: translateY(-2px); }
+        .form-error {
+            background: #fef2f2;
+            color: #991b1b;
+            padding: 12px 16px;
+            margin-top: 15px;
+            font-size: 0.88rem;
+            display: none;
+            border-left: 3px solid #e11d48;
+        }
+        .form-error.active { display: block; }
+
+        @media (max-width: 768px) {
+            .download-card { padding: 35px 25px; }
+            .checkbox-group, .radio-group { grid-template-columns: 1fr; }
+            .download-intro h2 { font-size: 1.8rem; }
+        }
+
         @media (max-width: 480px) {
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             .benefits-container { grid-template-columns: 1fr; }
             .hero-image-wrapper { width: 280px; height: 280px; }
             .hero-product { font-size: 7rem; }
-            .hero-product-img { width: 200px; height: 200px; }
+            .hero-product-img { width: 240px; height: 240px; }
             .contact-methods { flex-direction: column; }
             .result-buttons { flex-direction: column; }
             .btn-result { width: 100%; }
@@ -1178,6 +1401,7 @@
                 <a href="#inicio">Inicio</a>
                 <a href="#jabones">Jabones</a>
                 <a href="#balsamos">Bálsamos</a>
+                <a href="#catalogo">Catálogo</a>
                 <a href="#nosotros">Nosotros</a>
                 <a href="#contacto">Contacto</a>
             </nav>
@@ -1206,11 +1430,7 @@
                 <div class="hero-image-wrapper">
                     <div class="hero-circle"></div>
                     <div class="hero-circle-inner"></div>
-                    <img src="images/jabon-hero.png" alt="Jabón WAYSUMI" class="hero-product-img" onerror="this.outerHTML='<span class=\'hero-product\'>🧼</span>'">
-                    <span class="floating-element float-1">🌿</span>
-                    <span class="floating-element float-2">🍃</span>
-                    <span class="floating-element float-3">🌱</span>
-                    <span class="floating-element float-4">✨</span>
+                    <img src="images/jabon-hero.png" alt="Jabones artesanales WAYSUMI con ingredientes naturales" class="hero-product-img" onerror="this.outerHTML='<span class=\'hero-product\'>🧼</span>'">
                 </div>
             </div>
         </div>
@@ -1547,6 +1767,112 @@
         </div>
     </section>
 
+    <!-- DESCARGA DE CATÁLOGO -->
+    <section class="download-section" id="catalogo">
+        <div class="download-container">
+            <div class="download-intro">
+                <p class="section-tag">Catálogo Gratis</p>
+                <h2>Descubre el poder de la belleza natural amazónica 🌿</h2>
+                <p>Descarga gratis nuestro catálogo WAYSUMI y recibe recomendaciones personalizadas para tu piel.</p>
+            </div>
+
+            <div class="download-card">
+                <form id="catalogForm" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre <span class="required">*</span></label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico <span class="required">*</span></label>
+                        <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej. 931 887 979">
+                        <span class="form-hint">Opcional · Para contactarte con recomendaciones</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoPiel">Tipo de piel</label>
+                        <select id="tipoPiel" name="tipoPiel">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Grasa o mixta">Grasa o mixta</option>
+                            <option value="Seca o sensible">Seca o sensible</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Apagada o con tono desigual">Apagada o con tono desigual</option>
+                            <option value="No lo sé">No lo sé</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Qué productos te interesan?</label>
+                        <div class="checkbox-group">
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Selva Clara">
+                                <span>Selva Clara</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Bosque Sereno">
+                                <span>Bosque Sereno</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Luna de Nácar">
+                                <span>Luna de Nácar</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Besos de Karité">
+                                <span>Besos de Karité</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Ámbar Amazónico">
+                                <span>Ámbar Amazónico</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox" name="productos" value="Todos">
+                                <span>Todos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Para qué deseas el catálogo? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="uso" value="Uso personal" required>
+                                <span>Uso personal</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="uso" value="Regalo">
+                                <span>Regalo</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="uso" value="Negocio / reventa">
+                                <span>Negocio / reventa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="download-btn" id="downloadBtn" disabled>
+                        📥 Descargar Catálogo PDF
+                    </button>
+
+                    <div class="form-error" id="formError"></div>
+                </form>
+
+                <div class="download-success" id="downloadSuccess">
+                    <div class="icon">✨</div>
+                    <h3>¡Gracias por tu interés!</h3>
+                    <p>Tu catálogo se está descargando. También te contactaremos con recomendaciones personalizadas.</p>
+                    <a href="catalogo/WAYSUMI-catalogo.pdf" download id="manualDownloadLink">
+                        📄 Descargar de nuevo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACTO -->
     <section class="contact" id="contacto">
         <div class="contact-container">
@@ -1555,8 +1881,8 @@
             <p>Cuéntanos tu tipo de piel y rutina diaria, te orientamos para elegir el ritual más adecuado para ti 💚</p>
 
             <div class="contact-methods">
-                <a href="mailto:Wayllasumi@gmail.com" class="contact-method">
-                    <span>📧</span> Wayllasumi@gmail.com
+                <a href="/cdn-cgi/l/email-protection#4215233b2e2e2331372f2b02252f232b2e6c212d2f" class="contact-method">
+                    <span>📧</span> <span class="__cf_email__" data-cfemail="702711091c1c1103051d1930171d11191c5e131f1d">[email&#160;protected]</span>
                 </a>
             </div>
 
@@ -1566,7 +1892,7 @@
                     <a href="https://web.facebook.com/profile.php?id=61582317249778" target="_blank" class="social-icon-btn facebook" aria-label="Facebook">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4H15c-1.2 0-1.6.7-1.6 1.5V12H16l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/waysumi_amazonica/" target="_blank" class="social-icon-btn instagram" aria-label="Instagram">
+                    <a href="https://www.instagram.com/waysumi_peru" target="_blank" class="social-icon-btn instagram" aria-label="Instagram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.5-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.4.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.5-.2 1.2-.4 2.4-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.3a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm0 10.7a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4zm6.7-11.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                     </a>
                     <a href="https://www.tiktok.com/@waysumi" target="_blank" class="social-icon-btn tiktok" aria-label="TikTok">
@@ -1593,7 +1919,7 @@
                         <a href="https://web.facebook.com/profile.php?id=61582317249778" target="_blank" aria-label="Facebook">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4H15c-1.2 0-1.6.7-1.6 1.5V12H16l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/></svg>
                         </a>
-                        <a href="https://www.instagram.com/waysumi_amazonica/" target="_blank" aria-label="Instagram">
+                        <a href="https://www.instagram.com/waysumi_peru" target="_blank" aria-label="Instagram">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.5-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.4.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.5-.2 1.2-.4 2.4-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.3a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm0 10.7a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4zm6.7-11.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                         </a>
                         <a href="https://www.tiktok.com/@waysumi" target="_blank" aria-label="TikTok">
@@ -1615,6 +1941,7 @@
                     <ul>
                         <li><a href="#balsamos">Besos de Karité</a></li>
                         <li><a href="#balsamos">Ámbar Amazónico</a></li>
+                        <li><a href="#catalogo">Descargar Catálogo</a></li>
                         <li><a href="#nosotros">Nosotros</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
@@ -1623,8 +1950,8 @@
                     <h4>Contacto</h4>
                     <ul>
                         <li><a href="https://wa.me/51931887979" target="_blank">WhatsApp: 931 887 979</a></li>
-                        <li><a href="mailto:Wayllasumi@gmail.com">Wayllasumi@gmail.com</a></li>
-                        <li><a href="https://www.instagram.com/waysumi_amazonica/" target="_blank">@waysumi_amazonica</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#8cdbedf5e0e0edfff9e1e5ccebe1ede5e0a2efe3e1"><span class="__cf_email__" data-cfemail="6c3b0d1500000d1f1901052c0b010d0500420f0301">[email&#160;protected]</span></a></li>
+                        <li><a href="https://www.instagram.com/waysumi_peru" target="_blank">@waysumi_peru</a></li>
                     </ul>
                 </div>
             </div>
@@ -1636,7 +1963,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Datos de productos - Catálogo oficial WAYSUMI
         const productsData = {
             'selva-clara': {
@@ -1924,7 +2251,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transform = 'translateY(00)';
                 }
             });
         }, { threshold: 0.1 });
@@ -1934,6 +2261,118 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
+        });
+
+        // ============================================
+        // FORMULARIO DE DESCARGA DE CATÁLOGO
+        // ============================================
+        // ⚠️ IMPORTANTE: Reemplaza esta URL con la tuya
+        // de Google Apps Script (ver instrucciones al final del archivo)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/uni.pe/s/AKfycbziVkfmaPcmaUh84pmSOvOuEYHLuYMIS3o6d1cPpmwx275gcY5aIwqGF60mGejKSXi9/exec';
+
+        // Ruta del PDF del catálogo (súbelo a la carpeta /catalogo/)
+        const CATALOGO_PDF_URL = 'catalogo/WAYSUMI-catalogo.pdf';
+
+        const form = document.getElementById('catalogForm');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const formError = document.getElementById('formError');
+        const downloadSuccess = document.getElementById('downloadSuccess');
+
+        // Validación en tiempo real
+        function validateForm() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const uso = document.querySelector('input[name="uso"]:checked');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            const isValid = nombre.length >= 2 &&
+                            emailRegex.test(correo) &&
+                            uso !== null;
+
+            if (isValid) {
+                downloadBtn.classList.add('active');
+                downloadBtn.disabled = false;
+            } else {
+                downloadBtn.classList.remove('active');
+                downloadBtn.disabled = true;
+            }
+            return isValid;
+        }
+
+        // Escuchar cambios en todos los campos
+        form.addEventListener('input', validateForm);
+        form.addEventListener('change', validateForm);
+
+        // Marcar visualmente checkboxes/radios seleccionados
+        document.querySelectorAll('.check-item input, .radio-item input').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.type === 'radio') {
+                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                        r.closest('.radio-item').classList.remove('checked');
+                    });
+                }
+                this.closest('.check-item, .radio-item').classList.toggle('checked', this.checked);
+            });
+        });
+
+        // Envío del formulario
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!validateForm()) return;
+
+            downloadBtn.classList.add('sending');
+            downloadBtn.classList.remove('active');
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = '⏳ Enviando...';
+            formError.classList.remove('active');
+
+            // Recolectar datos
+            const productosSeleccionados = Array.from(
+                document.querySelectorAll('input[name="productos"]:checked')
+            ).map(el => el.value).join(', ');
+
+            const data = {
+                fecha: new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' }),
+                nombre: document.getElementById('nombre').value.trim(),
+                correo: document.getElementById('correo').value.trim(),
+                whatsapp: document.getElementById('whatsapp').value.trim() || 'No indicado',
+                tipoPiel: document.getElementById('tipoPiel').value || 'No indicado',
+                productos: productosSeleccionados || 'No indicado',
+                uso: document.querySelector('input[name="uso"]:checked').value,
+                origen: 'Sitio Web WAYSUMI'
+            };
+
+            try {
+                // Envío a Google Sheets vía Apps Script
+                // Se usa modo no-cors porque Apps Script no devuelve headers CORS por defecto
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                // Iniciar descarga del PDF
+                const link = document.createElement('a');
+                link.href = CATALOGO_PDF_URL;
+                link.download = 'WAYSUMI-Catalogo.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Mostrar mensaje de éxito
+                form.style.display = 'none';
+                downloadSuccess.classList.add('active');
+
+            } catch (error) {
+                console.error('Error:', error);
+                formError.textContent = '⚠️ Hubo un problema al procesar tu solicitud. Por favor intenta de nuevo o contáctanos por WhatsApp.';
+                formError.classList.add('active');
+                downloadBtn.classList.remove('sending');
+                downloadBtn.classList.add('active');
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = '📥 Descargar Catálogo PDF';
+            }
         });
     </script>
 </body>
